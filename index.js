@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -26,7 +26,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 //ROUTES
-
+app.get("/health", (req, res) => {
+  res.json({
+    message: "Server is up and running",
+  });
+});
 app.use("/kpi", kpiRoutes);
 app.use("/product", productRoutes);
 app.use("/transaction", transactionRoutes);
